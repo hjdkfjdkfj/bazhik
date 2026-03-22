@@ -2,17 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Бажик - Веселый Барашек в Мексике!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Бажик - Веселый Мексиканский Барашек</title>
     <link rel="stylesheet" href="бажик.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    
-    <!-- Фоновые декоративные элементы -->
+    <!-- Фоновые декорации -->
+    <div class="bg-pattern"></div>
     <div class="cactus-left">
         <div class="cactus-flower"></div>
     </div>
@@ -22,19 +20,30 @@
     <div class="sun">
         <div class="sun-rays"></div>
     </div>
+    
+    <!-- Облака -->
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
     <div class="cloud cloud3"></div>
     <div class="cloud cloud4"></div>
 
+    <!-- Летающие мексиканские украшения -->
+    <div class="floating-decoration">
+        <span class="floating-emoji">🪇</span>
+        <span class="floating-emoji">🌮</span>
+        <span class="floating-emoji">🎩</span>
+        <span class="floating-emoji">🌵</span>
+        <span class="floating-emoji">🎶</span>
+    </div>
+
     <div class="container">
         <header>
             <div class="header-decoration">
-                <span class="maraca">🪇</span>
-                <h1>🐏 БАЖИК EL VERDE 🐏</h1>
-                <span class="maraca">🪇</span>
+                <span class="maraca left">🪇</span>
+                <h1>🐏 БАЖИК 🐏</h1>
+                <span class="maraca right">🪇</span>
             </div>
-            <p class="subtitle">✦ EL REY DE LOS CORDEROS VERDES ✦</p>
+            <p class="subtitle">✦ EL REY DE LOS CORDEROS ✦</p>
             <div class="sombrero-icon">🎩🌵🎩</div>
         </header>
 
@@ -54,28 +63,28 @@
                 </div>
             </div>
             <button id="resetButton" class="reset-btn">
-                <span>🔄</span> Сбросить стадо <span>🌵</span>
+                <span>🔄</span> Сбросить <span>🌵</span>
             </button>
         </div>
 
         <div id="sheepField" class="sheep-field">
-            <!-- Сюда будут динамически добавляться барашки из картинки -->
+            <!-- Барашки будут здесь -->
         </div>
 
         <div class="sound-control">
             <button id="muteButton" class="mute-btn">
                 <span class="mute-icon">🔊</span>
-                <span class="mute-text">Звуки природы (МЕ)</span>
+                <span class="mute-text">Звуки</span>
             </button>
         </div>
         
         <footer>
             <div class="footer-decoration">
                 <span>🌮</span>
-                <p>✨ Нажми на любого барашка — стадо УДВАИВАЕТСЯ! ✨</p>
+                <p>✨ Нажми на барашка — стадо УДВАИВАЕТСЯ! ✨</p>
                 <span>🌮</span>
             </div>
-            <p class="credit">💚 Бажик — самый веселый барашек в мексиканской пустыне 🌵🎶</p>
+            <p class="credit">💚 Бажик — самый веселый барашек в Мексике 🎶</p>
         </footer>
     </div>
 
