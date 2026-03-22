@@ -2,7 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --primary-green: #6bb86b;
+    --dark-green: #4a9e4a;
+    --light-green: #9bda6f;
+    --gold: #ffd966;
+    --orange: #e55c2c;
+    --brown: #5c3e1f;
 }
 
 body {
@@ -14,48 +23,26 @@ body {
     cursor: pointer;
 }
 
-/* Звездное небо и мерцание */
-.stars, .twinkling {
+/* Мексиканский фоновый узор */
+.bg-pattern {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: radial-gradient(circle at 10% 20%, rgba(255,215,0,0.1) 2px, transparent 2px);
+    background-size: 30px 30px;
     pointer-events: none;
     z-index: 0;
 }
 
-.stars {
-    background: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
-                radial-gradient(3px 3px at 80px 150px, #fffa, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 300px 400px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 500px 200px, #ffd, rgba(0,0,0,0));
-    background-size: 200px 200px;
-    background-repeat: no-repeat;
-    opacity: 0.6;
-}
-
-.twinkling {
-    background: radial-gradient(2px 2px at 150px 250px, #fff8, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 450px 550px, #fffc, rgba(0,0,0,0)),
-                radial-gradient(3px 3px at 700px 300px, #ffff, rgba(0,0,0,0));
-    background-size: 250px 250px;
-    background-repeat: no-repeat;
-    animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle {
-    0% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
-
-/* Мексиканские кактусы с цветами */
+/* Кактусы */
 .cactus-left {
     position: fixed;
     bottom: 0;
-    left: 20px;
-    width: 110px;
-    height: 220px;
+    left: max(10px, 2%);
+    width: min(110px, 15vw);
+    height: min(220px, 30vh);
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50% 50% 20% 20% / 60% 60% 20% 20%;
     z-index: 1;
@@ -64,10 +51,10 @@ body {
 .cactus-left::before {
     content: '';
     position: absolute;
-    top: -40px;
-    left: 20px;
-    width: 45px;
-    height: 80px;
+    top: -25%;
+    left: 20%;
+    width: 45%;
+    height: 35%;
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50%;
     transform: rotate(-15deg);
@@ -75,42 +62,30 @@ body {
 .cactus-left::after {
     content: '';
     position: absolute;
-    top: -30px;
-    right: 15px;
-    width: 40px;
-    height: 70px;
+    top: -20%;
+    right: 15%;
+    width: 40%;
+    height: 30%;
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50%;
     transform: rotate(20deg);
 }
 .cactus-flower {
     position: absolute;
-    top: -15px;
-    left: 40px;
-    width: 20px;
-    height: 20px;
+    top: -10%;
+    left: 35%;
+    width: min(20px, 5vw);
+    height: min(20px, 5vw);
     background: radial-gradient(circle, #ff6b6b, #ff4444);
     border-radius: 50%;
     box-shadow: 0 0 10px #ff8888;
 }
-.cactus-flower::before,
-.cactus-flower::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: radial-gradient(circle, #ff8888, #ff4444);
-    border-radius: 50%;
-}
-.cactus-flower::before { top: -8px; left: -5px; }
-.cactus-flower::after { top: -8px; right: -5px; }
-
 .cactus-right {
     position: fixed;
     bottom: 0;
-    right: 20px;
-    width: 120px;
-    height: 240px;
+    right: max(10px, 2%);
+    width: min(120px, 16vw);
+    height: min(240px, 32vh);
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50% 50% 20% 20% / 60% 60% 20% 20%;
     z-index: 1;
@@ -119,10 +94,10 @@ body {
 .cactus-right::before {
     content: '';
     position: absolute;
-    top: -45px;
-    left: 25px;
-    width: 50px;
-    height: 90px;
+    top: -25%;
+    left: 25%;
+    width: 45%;
+    height: 35%;
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50%;
     transform: rotate(-10deg);
@@ -130,132 +105,147 @@ body {
 .cactus-right::after {
     content: '';
     position: absolute;
-    top: -35px;
-    right: 20px;
-    width: 45px;
-    height: 80px;
+    top: -20%;
+    right: 20%;
+    width: 40%;
+    height: 30%;
     background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
     border-radius: 50%;
     transform: rotate(15deg);
 }
 
-/* Солнце с лучами */
+/* Солнце */
 .sun {
     position: fixed;
-    top: 30px;
-    right: 40px;
-    width: 110px;
-    height: 110px;
+    top: max(20px, 2%);
+    right: max(20px, 3%);
+    width: min(110px, 20vw);
+    height: min(110px, 20vw);
     background: radial-gradient(circle, #ffdd77, #ffaa33);
     border-radius: 50%;
-    box-shadow: 0 0 60px #ffaa33;
+    box-shadow: 0 0 40px #ffaa33;
     z-index: 0;
-    animation: floatSun 8s infinite alternate ease-in-out;
-}
-.sun-rays {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    animation: floatSun 6s infinite alternate ease-in-out;
 }
 @keyframes floatSun {
-    0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(12px) rotate(5deg); }
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(12px); }
 }
 
 /* Облака */
 .cloud {
     position: fixed;
-    background: rgba(255, 255, 250, 0.95);
+    background: rgba(255, 255, 250, 0.9);
     border-radius: 80% 20% 75% 25% / 60% 55% 45% 40%;
     z-index: 0;
-    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
-    backdrop-filter: blur(2px);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
 }
 .cloud1 {
-    width: 200px;
-    height: 110px;
-    top: 60px;
-    left: 5%;
+    width: min(200px, 40vw);
+    height: min(110px, 20vh);
+    top: 5%;
+    left: -5%;
     animation: drift 32s infinite linear;
 }
 .cloud2 {
-    width: 260px;
-    height: 140px;
-    top: 140px;
-    right: 8%;
+    width: min(260px, 50vw);
+    height: min(140px, 25vh);
+    top: 15%;
+    right: -5%;
     animation: drift 40s infinite reverse linear;
 }
 .cloud3 {
-    width: 170px;
-    height: 95px;
-    bottom: 100px;
-    left: 15%;
+    width: min(170px, 35vw);
+    height: min(95px, 18vh);
+    bottom: 15%;
+    left: -5%;
     animation: drift 45s infinite linear;
 }
 .cloud4 {
-    width: 220px;
-    height: 120px;
-    bottom: 180px;
-    right: 12%;
+    width: min(220px, 45vw);
+    height: min(120px, 22vh);
+    bottom: 25%;
+    right: -5%;
     animation: drift 38s infinite reverse linear;
 }
 @keyframes drift {
-    0% { transform: translateX(-30px); }
-    100% { transform: translateX(40px); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(10%); }
 }
 
+/* Летающие украшения */
+.floating-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.floating-emoji {
+    position: absolute;
+    font-size: clamp(20px, 5vw, 40px);
+    opacity: 0.3;
+    animation: float 15s infinite linear;
+}
+.floating-emoji:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.floating-emoji:nth-child(2) { top: 70%; right: 8%; animation-delay: -3s; }
+.floating-emoji:nth-child(3) { top: 30%; right: 15%; animation-delay: -6s; }
+.floating-emoji:nth-child(4) { bottom: 20%; left: 10%; animation-delay: -9s; }
+.floating-emoji:nth-child(5) { top: 80%; left: 20%; animation-delay: -12s; }
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* Контейнер */
 .container {
     position: relative;
     z-index: 10;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: max(15px, 2%) max(20px, 3%);
     text-align: center;
 }
 
-/* Хедер с украшениями */
+/* Хедер */
 .header-decoration {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: clamp(10px, 4vw, 30px);
     flex-wrap: wrap;
 }
 .maraca {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 4rem);
     animation: shake 0.5s infinite alternate;
 }
 @keyframes shake {
-    from { transform: rotate(-10deg); }
-    to { transform: rotate(10deg); }
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(15deg); }
 }
-
 header h1 {
-    font-size: 4rem;
+    font-size: clamp(1.8rem, 8vw, 4rem);
     background: linear-gradient(135deg, #2d6a2d, #4a9e4a, #6bb86b);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 4px 4px 0px rgba(255,215,0,0.3);
-    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 rgba(255,215,0,0.3);
     font-weight: 800;
-    display: inline-block;
-    margin-bottom: 10px;
 }
 .subtitle {
-    font-size: 1.6rem;
+    font-size: clamp(0.9rem, 4vw, 1.6rem);
     color: #d4571e;
     font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 0 #fff3bf;
-    margin-bottom: 15px;
+    text-shadow: 1px 1px 0 #fff3bf;
+    margin: 8px 0;
 }
 .sombrero-icon {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 5vw, 2rem);
     opacity: 0.7;
-    margin-bottom: 10px;
 }
 
 /* Статистика */
@@ -263,64 +253,61 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: clamp(15px, 4vw, 30px);
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin: 20px 0 30px;
 }
 .stat-card {
     background: linear-gradient(135deg, #fff9e8, #fff2dd);
-    border-radius: 70px;
-    padding: 15px 30px;
-    box-shadow: 0 12px 0 #c29a2e;
+    border-radius: 60px;
+    padding: clamp(10px, 3vw, 15px) clamp(20px, 5vw, 30px);
+    box-shadow: 0 8px 0 #c29a2e;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: clamp(10px, 3vw, 15px);
     transition: transform 0.2s;
 }
-.stat-card:hover {
-    transform: translateY(-3px);
+.stat-card:active {
+    transform: scale(0.98);
 }
 .stat-icon {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
 }
 .stat-info {
     text-align: left;
 }
 .stat-label {
-    font-size: 0.9rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
     color: #b64926;
     font-weight: bold;
-    display: block;
 }
 .stat-value {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 6vw, 2rem);
     font-weight: 800;
     background: linear-gradient(135deg, #2d6a2d, #4a9e4a);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    min-width: 70px;
-    display: inline-block;
 }
 .reset-btn {
     background: linear-gradient(135deg, #e55c2c, #c4451a);
     border: none;
-    font-family: 'Quicksand', cursive;
-    font-size: 1.2rem;
+    font-family: inherit;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     font-weight: bold;
-    padding: 12px 28px;
+    padding: clamp(10px, 3vw, 12px) clamp(20px, 5vw, 28px);
     border-radius: 60px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 8px 0 #8b3a16;
+    box-shadow: 0 6px 0 #8b3a16;
     transition: 0.07s linear;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 .reset-btn:active {
-    transform: translateY(4px);
-    box-shadow: 0 4px 0 #8b3a16;
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #8b3a16;
 }
 
 /* Поле для барашков */
@@ -328,63 +315,63 @@ header h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 35px;
-    margin: 30px 0 40px;
-    min-height: 600px;
-    transition: all 0.3s ease;
+    gap: clamp(20px, 5vw, 35px);
+    margin: 30px 0;
+    min-height: auto;
 }
 
-/* ========== КАРТОЧКА С КАРТИНКОЙ БАРАШКА ========== */
+/* Карточка барашка */
 .sheep-card {
     background: radial-gradient(circle at 30% 20%, #9bda6f, #5f9e3a);
-    border-radius: 40px;
-    padding: 25px 25px 30px 25px;
+    border-radius: min(40px, 8vw);
+    padding: clamp(15px, 4vw, 25px) clamp(15px, 4vw, 25px) clamp(20px, 5vw, 30px);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 20px 25px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,200,0.6);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
     position: relative;
-    animation: bounceIn 0.5s ease-out;
-    width: 280px;
+    animation: bounceIn 0.4s ease-out;
+    width: clamp(200px, 40vw, 280px);
     text-align: center;
-    backdrop-filter: blur(2px);
+    border: 2px solid #ffd966;
 }
 .sheep-card:hover {
-    transform: scale(1.05) translateY(-8px);
-    box-shadow: 0 25px 35px rgba(0,0,0,0.4);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 18px 25px rgba(0,0,0,0.25);
 }
 .sheep-card:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
-/* Сомбреро над картинкой */
+/* Сомбреро */
 .sombrero-real {
     position: relative;
-    width: 150px;
-    height: 55px;
+    width: 80%;
+    max-width: 150px;
+    height: auto;
+    padding-bottom: 25%;
     background: linear-gradient(135deg, #e5b13b, #c9862c);
     border-radius: 50% 50% 30% 30%;
-    margin: -15px auto 5px auto;
-    box-shadow: 0 10px 0 #9b621f, inset 0 2px 5px rgba(255,215,0,0.8);
+    margin: -10px auto 10px;
+    box-shadow: 0 8px 0 #9b621f;
     z-index: 5;
 }
 .sombrero-real::before {
     content: '';
     position: absolute;
-    top: -30px;
-    left: 20px;
-    width: 110px;
-    height: 40px;
+    top: -55%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
     background: linear-gradient(135deg, #f5bc4a, #d49c2c);
-    border-radius: 50% 50% 40% 40%;
-    box-shadow: 0 6px 0 #a45e1a;
+    border-radius: 50%;
+    box-shadow: 0 4px 0 #a45e1a;
 }
 .sombrero-real::after {
     content: '✨';
     position: absolute;
-    font-size: 28px;
-    top: -48px;
-    left: 60px;
-    text-shadow: 0 2px 5px gold;
+    font-size: min(24px, 6vw);
+    top: -85%;
+    left: 40%;
     animation: sparkle 1s infinite alternate;
 }
 @keyframes sparkle {
@@ -392,7 +379,7 @@ header h1 {
     to { opacity: 1; transform: scale(1.2);}
 }
 
-/* Контейнер для картинки барашка */
+/* Картинка барашка */
 .sheep-image-container {
     position: relative;
     margin: 15px 0;
@@ -400,83 +387,80 @@ header h1 {
     justify-content: center;
     align-items: center;
 }
-
 .sheep-image {
-    width: 180px;
-    height: 180px;
+    width: 80%;
+    max-width: 180px;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
     transition: all 0.2s ease;
     animation: gentleFloat 3s infinite ease-in-out;
 }
-
 @keyframes gentleFloat {
-    0%, 100% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
 }
-
-/* Мексиканская рамка вокруг картинки */
+.sheep-card:hover .sheep-image {
+    transform: scale(1.05);
+}
 .mexican-frame {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 3px solid #ffd966;
-    border-radius: 30px;
-    background: radial-gradient(circle, rgba(255,215,0,0.2), transparent);
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid #ffd966;
+    border-radius: min(25px, 5vw);
     pointer-events: none;
     animation: frameGlow 2s infinite alternate;
 }
-
 @keyframes frameGlow {
     from { border-color: #ffd966; box-shadow: 0 0 5px rgba(255,217,102,0.3); }
-    to { border-color: #ffaa33; box-shadow: 0 0 15px rgba(255,170,51,0.6); }
+    to { border-color: #ffaa33; box-shadow: 0 0 12px rgba(255,170,51,0.6); }
 }
 
 /* Имя барашка */
 .sheep-name-real {
     font-weight: bold;
-    background: rgba(255,245,200,0.9);
+    background: rgba(255,245,200,0.95);
     display: inline-block;
-    padding: 6px 18px;
+    padding: clamp(4px, 2vw, 6px) clamp(12px, 4vw, 18px);
     border-radius: 40px;
-    margin-top: 15px;
-    font-size: 1.2rem;
+    margin-top: 12px;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     color: #2d5720;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-    font-family: 'Quicksand', cursive;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 @keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.2) rotate(-10deg); }
-    60% { transform: scale(1.05) rotate(2deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+    60% { transform: scale(1.02) rotate(1deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 
-/* Всплывающее сообщение */
+/* Речевое облако */
 .speech-bubble {
     position: fixed;
     background: linear-gradient(135deg, #fffef0, #ffffe0);
-    border-radius: 60px;
-    padding: 14px 28px;
+    border-radius: 50px;
+    padding: clamp(8px, 2vw, 14px) clamp(16px, 4vw, 28px);
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: clamp(0.9rem, 3.5vw, 1.4rem);
     color: #bd3e11;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     white-space: nowrap;
     z-index: 200;
     pointer-events: none;
     font-family: 'Patrick Hand', cursive;
-    border: 3px solid #ffaa44;
-    animation: floatUpReal 0.9s forwards;
+    border: 2px solid #ffaa44;
+    animation: floatUp 0.8s forwards;
 }
-@keyframes floatUpReal {
-    0% { opacity: 1; transform: translateY(0px) scale(0.8);}
-    100% { opacity: 0; transform: translateY(-110px) scale(1.1);}
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(0.8);}
+    100% { opacity: 0; transform: translateY(-80px) scale(1.1);}
 }
 
+/* Звук */
 .sound-control {
     margin: 15px;
 }
@@ -484,64 +468,122 @@ header h1 {
     background: linear-gradient(135deg, #5c3e1f, #3a2a12);
     border: none;
     color: #ffd966;
-    padding: 12px 32px;
+    padding: clamp(8px, 2.5vw, 12px) clamp(20px, 5vw, 32px);
     border-radius: 50px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     cursor: pointer;
-    font-family: 'Quicksand', monospace;
+    font-family: inherit;
     transition: all 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 .mute-btn:active {
     transform: scale(0.96);
 }
 
+/* Футер */
 footer {
     margin-top: 40px;
     background: rgba(0,0,0,0.2);
-    border-radius: 50px;
-    padding: 18px;
+    border-radius: 40px;
+    padding: clamp(12px, 3vw, 18px);
     backdrop-filter: blur(8px);
 }
 .footer-decoration {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    font-size: 1.4rem;
+    gap: clamp(10px, 4vw, 20px);
+    flex-wrap: wrap;
+    font-size: clamp(1rem, 4vw, 1.4rem);
 }
 .footer-decoration p {
-    font-size: 1.1rem;
+    font-size: clamp(0.8rem, 3vw, 1.1rem);
     font-weight: bold;
     color: #3a2a12;
 }
 .credit {
-    font-size: 0.9rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
     opacity: 0.9;
     margin-top: 8px;
     color: #2c2a1f;
 }
 
-/* Адаптация под мобильные устройства */
-@media (max-width: 700px) {
-    .sheep-card { width: 220px; padding: 15px; }
-    .sombrero-real { width: 120px; transform: scale(0.9); margin-top: -20px; }
-    .sheep-image { width: 140px; height: 140px; }
-    .stat-card { padding: 10px 20px; }
-    header h1 { font-size: 2.2rem; }
-    .speech-bubble { font-size: 1rem; white-space: nowrap; padding: 8px 16px; }
-    .stat-value { font-size: 1.5rem; }
+/* Адаптация для телефонов */
+@media (max-width: 600px) {
+    .stats-panel {
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 8px 16px;
+    }
+    
+    .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .reset-btn span:first-child {
+        font-size: 1rem;
+    }
+    
+    .sheep-field {
+        gap: 20px;
+    }
+    
+    .sheep-card {
+        width: calc(50% - 20px);
+        min-width: 160px;
+    }
+    
+    .speech-bubble {
+        white-space: normal;
+        max-width: 80vw;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    
+    .floating-emoji {
+        display: none;
+    }
 }
 
-/* Анимация загрузки картинки */
-.sheep-image {
-    transition: all 0.3s ease;
+@media (max-width: 450px) {
+    .sheep-card {
+        width: calc(100% - 20px);
+        max-width: 280px;
+    }
+    
+    .stat-card .stat-icon {
+        font-size: 1.5rem;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+    
+    .header-decoration {
+        gap: 10px;
+    }
 }
 
-.sheep-card:hover .sheep-image {
-    transform: scale(1.05);
-    filter: drop-shadow(0 12px 18px rgba(0,0,0,0.4));
+/* Для очень больших экранов */
+@media (min-width: 1400px) {
+    .sheep-card {
+        width: 300px;
+    }
+    
+    .container {
+        padding: 30px 40px;
+    }
+}
+
+/* Плавные переходы для touch */
+@media (hover: hover) {
+    .sheep-card:hover {
+        transform: translateY(-8px) scale(1.03);
+    }
 }
