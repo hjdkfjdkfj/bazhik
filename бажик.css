@@ -1,0 +1,547 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9d56e 0%, #f8b84a 50%, #e89f3e 100%);
+    font-family: 'Quicksand', 'Fredoka One', cursive;
+    overflow-x: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Звездное небо и мерцание */
+.stars, .twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stars {
+    background: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 80px 150px, #fffa, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 300px 400px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 500px 200px, #ffd, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+.twinkling {
+    background: radial-gradient(2px 2px at 150px 250px, #fff8, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 450px 550px, #fffc, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 700px 300px, #ffff, rgba(0,0,0,0));
+    background-size: 250px 250px;
+    background-repeat: no-repeat;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Мексиканские кактусы с цветами */
+.cactus-left {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    width: 110px;
+    height: 220px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50% 50% 20% 20% / 60% 60% 20% 20%;
+    z-index: 1;
+    box-shadow: 0 8px 0 #0a2a0a;
+}
+.cactus-left::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    width: 45px;
+    height: 80px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50%;
+    transform: rotate(-15deg);
+}
+.cactus-left::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: 15px;
+    width: 40px;
+    height: 70px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50%;
+    transform: rotate(20deg);
+}
+.cactus-flower {
+    position: absolute;
+    top: -15px;
+    left: 40px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff6b6b, #ff4444);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff8888;
+}
+.cactus-flower::before,
+.cactus-flower::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #ff8888, #ff4444);
+    border-radius: 50%;
+}
+.cactus-flower::before { top: -8px; left: -5px; }
+.cactus-flower::after { top: -8px; right: -5px; }
+
+.cactus-right {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 120px;
+    height: 240px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50% 50% 20% 20% / 60% 60% 20% 20%;
+    z-index: 1;
+    box-shadow: 0 8px 0 #0a2a0a;
+}
+.cactus-right::before {
+    content: '';
+    position: absolute;
+    top: -45px;
+    left: 25px;
+    width: 50px;
+    height: 90px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50%;
+    transform: rotate(-10deg);
+}
+.cactus-right::after {
+    content: '';
+    position: absolute;
+    top: -35px;
+    right: 20px;
+    width: 45px;
+    height: 80px;
+    background: linear-gradient(135deg, #2d6a2d, #1e4a1e);
+    border-radius: 50%;
+    transform: rotate(15deg);
+}
+
+/* Солнце с лучами */
+.sun {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle, #ffdd77, #ffaa33);
+    border-radius: 50%;
+    box-shadow: 0 0 60px #ffaa33;
+    z-index: 0;
+    animation: floatSun 8s infinite alternate ease-in-out;
+}
+.sun-rays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+@keyframes floatSun {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(12px) rotate(5deg); }
+}
+
+/* Облака */
+.cloud {
+    position: fixed;
+    background: rgba(255, 255, 250, 0.95);
+    border-radius: 80% 20% 75% 25% / 60% 55% 45% 40%;
+    z-index: 0;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+    backdrop-filter: blur(2px);
+}
+.cloud1 {
+    width: 200px;
+    height: 110px;
+    top: 60px;
+    left: 5%;
+    animation: drift 32s infinite linear;
+}
+.cloud2 {
+    width: 260px;
+    height: 140px;
+    top: 140px;
+    right: 8%;
+    animation: drift 40s infinite reverse linear;
+}
+.cloud3 {
+    width: 170px;
+    height: 95px;
+    bottom: 100px;
+    left: 15%;
+    animation: drift 45s infinite linear;
+}
+.cloud4 {
+    width: 220px;
+    height: 120px;
+    bottom: 180px;
+    right: 12%;
+    animation: drift 38s infinite reverse linear;
+}
+@keyframes drift {
+    0% { transform: translateX(-30px); }
+    100% { transform: translateX(40px); }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Хедер с украшениями */
+.header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+.maraca {
+    font-size: 3rem;
+    animation: shake 0.5s infinite alternate;
+}
+@keyframes shake {
+    from { transform: rotate(-10deg); }
+    to { transform: rotate(10deg); }
+}
+
+header h1 {
+    font-size: 4rem;
+    background: linear-gradient(135deg, #2d6a2d, #4a9e4a, #6bb86b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 4px 4px 0px rgba(255,215,0,0.3);
+    letter-spacing: 2px;
+    font-weight: 800;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.subtitle {
+    font-size: 1.6rem;
+    color: #d4571e;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #fff3bf;
+    margin-bottom: 15px;
+}
+.sombrero-icon {
+    font-size: 2rem;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+/* Статистика */
+.stats-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.stat-card {
+    background: linear-gradient(135deg, #fff9e8, #fff2dd);
+    border-radius: 70px;
+    padding: 15px 30px;
+    box-shadow: 0 12px 0 #c29a2e;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+}
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+.stat-icon {
+    font-size: 2.5rem;
+}
+.stat-info {
+    text-align: left;
+}
+.stat-label {
+    font-size: 0.9rem;
+    color: #b64926;
+    font-weight: bold;
+    display: block;
+}
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2d6a2d, #4a9e4a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    min-width: 70px;
+    display: inline-block;
+}
+.reset-btn {
+    background: linear-gradient(135deg, #e55c2c, #c4451a);
+    border: none;
+    font-family: 'Quicksand', cursive;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 28px;
+    border-radius: 60px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #8b3a16;
+    transition: 0.07s linear;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.reset-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #8b3a16;
+}
+
+/* Поле для барашков */
+.sheep-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+    margin: 30px 0 40px;
+    min-height: 600px;
+    transition: all 0.3s ease;
+}
+
+/* ========== КАРТОЧКА С КАРТИНКОЙ БАРАШКА ========== */
+.sheep-card {
+    background: radial-gradient(circle at 30% 20%, #9bda6f, #5f9e3a);
+    border-radius: 40px;
+    padding: 25px 25px 30px 25px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 20px 25px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,200,0.6);
+    position: relative;
+    animation: bounceIn 0.5s ease-out;
+    width: 280px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+}
+.sheep-card:hover {
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: 0 25px 35px rgba(0,0,0,0.4);
+}
+.sheep-card:active {
+    transform: scale(0.98);
+}
+
+/* Сомбреро над картинкой */
+.sombrero-real {
+    position: relative;
+    width: 150px;
+    height: 55px;
+    background: linear-gradient(135deg, #e5b13b, #c9862c);
+    border-radius: 50% 50% 30% 30%;
+    margin: -15px auto 5px auto;
+    box-shadow: 0 10px 0 #9b621f, inset 0 2px 5px rgba(255,215,0,0.8);
+    z-index: 5;
+}
+.sombrero-real::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    width: 110px;
+    height: 40px;
+    background: linear-gradient(135deg, #f5bc4a, #d49c2c);
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: 0 6px 0 #a45e1a;
+}
+.sombrero-real::after {
+    content: '✨';
+    position: absolute;
+    font-size: 28px;
+    top: -48px;
+    left: 60px;
+    text-shadow: 0 2px 5px gold;
+    animation: sparkle 1s infinite alternate;
+}
+@keyframes sparkle {
+    from { opacity: 0.6; transform: scale(0.9);}
+    to { opacity: 1; transform: scale(1.2);}
+}
+
+/* Контейнер для картинки барашка */
+.sheep-image-container {
+    position: relative;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sheep-image {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
+    transition: all 0.2s ease;
+    animation: gentleFloat 3s infinite ease-in-out;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Мексиканская рамка вокруг картинки */
+.mexican-frame {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid #ffd966;
+    border-radius: 30px;
+    background: radial-gradient(circle, rgba(255,215,0,0.2), transparent);
+    pointer-events: none;
+    animation: frameGlow 2s infinite alternate;
+}
+
+@keyframes frameGlow {
+    from { border-color: #ffd966; box-shadow: 0 0 5px rgba(255,217,102,0.3); }
+    to { border-color: #ffaa33; box-shadow: 0 0 15px rgba(255,170,51,0.6); }
+}
+
+/* Имя барашка */
+.sheep-name-real {
+    font-weight: bold;
+    background: rgba(255,245,200,0.9);
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 40px;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #2d5720;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    font-family: 'Quicksand', cursive;
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.2) rotate(-10deg); }
+    60% { transform: scale(1.05) rotate(2deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Всплывающее сообщение */
+.speech-bubble {
+    position: fixed;
+    background: linear-gradient(135deg, #fffef0, #ffffe0);
+    border-radius: 60px;
+    padding: 14px 28px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #bd3e11;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    z-index: 200;
+    pointer-events: none;
+    font-family: 'Patrick Hand', cursive;
+    border: 3px solid #ffaa44;
+    animation: floatUpReal 0.9s forwards;
+}
+@keyframes floatUpReal {
+    0% { opacity: 1; transform: translateY(0px) scale(0.8);}
+    100% { opacity: 0; transform: translateY(-110px) scale(1.1);}
+}
+
+.sound-control {
+    margin: 15px;
+}
+.mute-btn {
+    background: linear-gradient(135deg, #5c3e1f, #3a2a12);
+    border: none;
+    color: #ffd966;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: 'Quicksand', monospace;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.mute-btn:active {
+    transform: scale(0.96);
+}
+
+footer {
+    margin-top: 40px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50px;
+    padding: 18px;
+    backdrop-filter: blur(8px);
+}
+.footer-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.4rem;
+}
+.footer-decoration p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #3a2a12;
+}
+.credit {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 8px;
+    color: #2c2a1f;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 700px) {
+    .sheep-card { width: 220px; padding: 15px; }
+    .sombrero-real { width: 120px; transform: scale(0.9); margin-top: -20px; }
+    .sheep-image { width: 140px; height: 140px; }
+    .stat-card { padding: 10px 20px; }
+    header h1 { font-size: 2.2rem; }
+    .speech-bubble { font-size: 1rem; white-space: nowrap; padding: 8px 16px; }
+    .stat-value { font-size: 1.5rem; }
+}
+
+/* Анимация загрузки картинки */
+.sheep-image {
+    transition: all 0.3s ease;
+}
+
+.sheep-card:hover .sheep-image {
+    transform: scale(1.05);
+    filter: drop-shadow(0 12px 18px rgba(0,0,0,0.4));
+}
