@@ -1,4 +1,4 @@
-// Веселый Бажик - с ВАШЕЙ картинкой бажичек.png!
+// Веселый Бажик - Полностью адаптивная версия!
 let sheepState = {
     totalSheep: 1,
     clickCounter: 0,
@@ -57,10 +57,10 @@ function showPhrase(x, y) {
     const bubble = document.createElement('div');
     bubble.className = 'speech-bubble';
     bubble.innerText = '🐏💚 "ЛАРРИ И ЛОРИ ЧОРНЫЙ!" 🎶🌮';
-    bubble.style.left = (x - 100) + 'px';
-    bubble.style.top = (y - 85) + 'px';
+    bubble.style.left = (x - 80) + 'px';
+    bubble.style.top = (y - 70) + 'px';
     document.body.appendChild(bubble);
-    setTimeout(() => { if(bubble) bubble.remove(); }, 900);
+    setTimeout(() => { if(bubble) bubble.remove(); }, 800);
 }
 
 function createSheepElement(id) {
@@ -68,11 +68,10 @@ function createSheepElement(id) {
     sheepDiv.className = 'sheep-card';
     sheepDiv.setAttribute('data-id', id);
     
-    // Используем ВАШУ картинку бажичек.png
     sheepDiv.innerHTML = `
         <div class="sombrero-real"></div>
         <div class="sheep-image-container">
-            <img src="бажичек.png" alt="Бажик" class="sheep-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%238bc34a\'/%3E%3Ctext x=\'50\' y=\'67\' text-anchor=\'middle\' fill=\'white\' font-size=\'40\'%3E🐏%3C/text%3E%3C/svg%3E'; this.onerror=null;">
+            <img src="бажичек.png" alt="Бажик" class="sheep-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%238bc34a\'/%3E%3Ctext x=\'50\' y=\'67\' text-anchor=\'middle\' fill=\'white\' font-size=\'40\'%3E🐏%3C/text%3E%3C/svg%3E';">
             <div class="mexican-frame"></div>
         </div>
         <div class="sheep-name-real">🐏 БАЖИК #${id}</div>
@@ -99,11 +98,9 @@ function handleSheepClick(id, element, event) {
         playBaaSound();
     }
     
-    // Эффект нажатия
-    element.style.transform = 'scale(0.92)';
+    element.style.transform = 'scale(0.95)';
     setTimeout(() => { if(element) element.style.transform = ''; }, 120);
     
-    // УДВОЕНИЕ: создаем нового барашка с той же картинкой
     const newId = Date.now() + Math.floor(Math.random() * 10000) + sheepState.totalSheep;
     const newSheep = createSheepElement(newId);
     
@@ -112,25 +109,19 @@ function handleSheepClick(id, element, event) {
     sheepCountSpan.innerText = sheepState.totalSheep;
     
     sheepState.sheepElements.set(newId, newSheep);
-    
-    // Эффект конфетти
     createMiniConfetti(rect.left + rect.width/2, rect.top);
-    
-    // Дополнительный эффект: легкая вибрация для мобильных
-    if (window.navigator && window.navigator.vibrate) {
-        window.navigator.vibrate(50);
-    }
 }
 
 function createMiniConfetti(x, y) {
-    for (let i = 0; i < 20; i++) {
+    const colors = ['#ff6b6b', '#ffd93d', '#6bcf7f', '#ff9f4a', '#ff6b9d', '#4ecdc4'];
+    for (let i = 0; i < 16; i++) {
         const conf = document.createElement('div');
+        const size = Math.random() * 8 + 5;
         conf.style.position = 'fixed';
-        conf.style.width = Math.random() * 8 + 6 + 'px';
-        conf.style.height = Math.random() * 8 + 6 + 'px';
-        const colors = ['#ff6b6b', '#ffd93d', '#6bcf7f', '#ff9f4a', '#ff6b9d', '#4ecdc4'];
+        conf.style.width = size + 'px';
+        conf.style.height = size + 'px';
         conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '20%';
+        conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
         conf.style.left = x + 'px';
         conf.style.top = y + 'px';
         conf.style.pointerEvents = 'none';
@@ -138,7 +129,7 @@ function createMiniConfetti(x, y) {
         document.body.appendChild(conf);
         
         const angle = Math.random() * Math.PI * 2;
-        const velocity = 2 + Math.random() * 8;
+        const velocity = 2 + Math.random() * 7;
         const vx = Math.cos(angle) * velocity;
         const vy = Math.sin(angle) * velocity - 3;
         let posX = x, posY = y;
@@ -155,7 +146,7 @@ function createMiniConfetti(x, y) {
             conf.style.left = posX + 'px';
             conf.style.top = posY + 'px';
             conf.style.opacity = life;
-            conf.style.transform = `rotate(${Date.now()}deg) scale(${life + 0.3})`;
+            conf.style.transform = `rotate(${Date.now()}deg)`;
             requestAnimationFrame(animateConf);
         }
         requestAnimationFrame(animateConf);
@@ -163,27 +154,23 @@ function createMiniConfetti(x, y) {
 }
 
 function resetGame() {
-    // Очищаем поле
     while (sheepField.firstChild) {
         sheepField.removeChild(sheepField.firstChild);
     }
     sheepState.sheepElements.clear();
     
-    // Сброс переменных
     sheepState.totalSheep = 1;
     sheepState.clickCounter = 0;
     totalClicksSpan.innerText = '0';
     sheepCountSpan.innerText = '1';
     
-    // Создаем первого барашка с ВАШЕЙ картинкой
     const firstSheep = createSheepElement(1);
     sheepField.appendChild(firstSheep);
     sheepState.sheepElements.set(1, firstSheep);
     
-    // Показываем сообщение о сбросе
     const msg = document.createElement('div');
     msg.className = 'speech-bubble';
-    msg.innerText = '🌮✨ Стадо обнулено! Бажик ждет тебя! ✨🐏';
+    msg.innerText = '🌮✨ Стадо обнулено! ✨🐏';
     msg.style.left = '35%';
     msg.style.top = '40%';
     document.body.appendChild(msg);
@@ -193,7 +180,7 @@ function resetGame() {
 function toggleMute() {
     sheepState.audioEnabled = !sheepState.audioEnabled;
     if (sheepState.audioEnabled) {
-        muteButton.innerHTML = '<span class="mute-icon">🔊</span><span class="mute-text">Звуки природы (МЕ)</span>';
+        muteButton.innerHTML = '<span class="mute-icon">🔊</span><span class="mute-text">Звуки</span>';
         if (!audioCtx) {
             initAudio();
             if(audioCtx && audioCtx.state === 'suspended') {
@@ -204,7 +191,7 @@ function toggleMute() {
         }
         playBaaSound();
     } else {
-        muteButton.innerHTML = '<span class="mute-icon">🔇</span><span class="mute-text">Звук выключен</span>';
+        muteButton.innerHTML = '<span class="mute-icon">🔇</span><span class="mute-text">Звук выкл</span>';
     }
 }
 
@@ -218,16 +205,12 @@ function initSite() {
     
     muteButton.addEventListener('click', toggleMute);
     
-    // Разрешение аудио после первого клика
     document.body.addEventListener('click', function initAudioOnFirstClick() {
         if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
         document.body.removeEventListener('click', initAudioOnFirstClick);
     }, { once: true });
-    
-    console.log("💚 Бажик готов! Ваша картинка бажичек.png загружена! Нажимай на барашков — они удваиваются!");
 }
 
-// Запуск когда DOM загружен
 document.addEventListener('DOMContentLoaded', initSite);
