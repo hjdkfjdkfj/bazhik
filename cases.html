@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Бажик - Баранокейсы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a0f1a 0%, #2a1a2a 100%);
+            min-height: 100vh;
+        }
+        
+        .cases-page {
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(10,15,26,0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 60px;
+            padding: 12px 24px;
+            border: 1px solid rgba(255,170,102,0.3);
+        }
+        
+        .back-btn {
+            background: rgba(255,170,51,0.2);
+            border: 1px solid #ffaa66;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #ffaa66;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .page-title h1 {
+            font-size: 1.3rem;
+            color: #ffaa66;
+        }
+        
+        .currency-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 16px;
+            border-radius: 40px;
+        }
+        
+        .currency-badge img {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .currency-badge span {
+            font-weight: 700;
+            color: #ffd966;
+            font-size: 1.2rem;
+        }
+        
+        .cases-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .case-card {
+            background: linear-gradient(135deg, rgba(50,40,60,0.9), rgba(40,30,50,0.7));
+            border-radius: 48px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,170,102,0.4);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        
+        .case-image {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        
+        .case-card h2 {
+            color: #ffaa66;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        
+        .case-card p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+        }
+        
+        .characters-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .char-chip {
+            background: rgba(0,0,0,0.3);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #ffaa66;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .char-chip img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+        
+        .open-case-btn {
+            background: linear-gradient(135deg, #ffaa33, #ff8800);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: inherit;
+            margin-bottom: 15px;
+            transition: transform 0.1s;
+        }
+        
+        .open-case-btn:active {
+            transform: scale(0.96);
+        }
+        
+        .price {
+            background: rgba(0,0,0,0.3);
+            padding: 5px 12px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .price img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .warning-text {
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .case-stats-container {
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+        
+        .case-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 60px;
+        }
+        
+        .case-stats .stat-item {
+            text-align: center;
+        }
+        
+        .case-stats .stat-label {
+            display: block;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .case-stats .stat-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffd966;
+        }
+        
+        @media (max-width: 600px) {
+            .case-image {
+                width: 160px;
+                height: 160px;
+            }
+            .case-card h2 {
+                font-size: 1.3rem;
+            }
+            .open-case-btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cases-page">
+        <div class="page-header">
+            <a href="game.html" class="back-btn">← НАЗАД</a>
+            <div class="page-title">
+                <span>🎁</span>
+                <h1>БАРАНОКЕЙСЫ</h1>
+                <span>🎁</span>
+            </div>
+            <div class="currency-badge">
+                <img src="images/бажичок.png" alt="💰">
+                <span id="currencyDisplay">0</span>
+            </div>
+        </div>
+
+        <div class="cases-container">
+            <div class="case-card">
+                <img src="images/баранокейс.png" class="case-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%23c9862c\' rx=\'30\'/%3E%3Ctext x=\'100\' y=\'130\' text-anchor=\'middle\' fill=\'white\' font-size=\'60\'%3E🎁%3C/text%3E%3C/svg%3E';">
+                <h2>✨ ПРЕМИУМ КЕЙС ✨</h2>
+                <p>Открой и получи одного из барашков!</p>
+                <div class="characters-list">
+                    <div class="char-chip"><img src="images/бажичек.png"> Обычный</div>
+                    <div class="char-chip"><img src="images/бажиквочках.png"> В очках</div>
+                    <div class="char-chip"><img src="images/бажикмеха.png"> Меха</div>
+                    <div class="char-chip"><img src="images/бажикпоко.png"> Поко</div>
+                </div>
+                <button id="openCaseBtn" class="open-case-btn">
+                    <span>🎲 ОТКРЫТЬ КЕЙС</span>
+                    <div class="price">
+                        <img src="images/бажичок.png" alt="💰">
+                        <span id="casePrice">150</span>
+                    </div>
+                </button>
+                <div id="caseWarning" class="warning-text"></div>
+            </div>
+        </div>
+        
+        <div id="caseStats" class="case-stats-container"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/cases.js"></script>
+</body>
+</html>

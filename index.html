@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Бажик - Главное меню</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .menu-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a2a2a 100%);
+            padding: 20px;
+        }
+        .menu-card {
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-logo {
+            margin-bottom: 30px;
+        }
+        .menu-logo-icon {
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px rgba(255,215,0,0.5));
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .menu-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd966, #ffaa33);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        .menu-subtitle {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+        }
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .menu-btn {
+            background: linear-gradient(135deg, #ffaa33, #ff8800);
+            border: none;
+            padding: 16px 24px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .menu-btn.secondary {
+            background: rgba(255,170,51,0.2);
+            color: #ffaa33;
+            border: 1px solid #ffaa33;
+        }
+        .menu-btn:active {
+            transform: scale(0.97);
+        }
+        .menu-footer {
+            margin-top: 40px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-card">
+            <div class="menu-logo">
+                <div class="menu-logo-icon">🐏</div>
+                <h1 class="menu-title">БАЖИК</h1>
+                <p class="menu-subtitle">Коллекция легендарных барашков</p>
+            </div>
+            <div class="menu-buttons">
+                <a href="game.html" class="menu-btn">
+                    <span>🎮</span> НАЧАТЬ ИГРУ
+                    <span>🎮</span>
+                </a>
+                <a href="brawlers.html" class="menu-btn secondary">
+                    <span>⭐</span> МОИ БАРАНЧИКИ
+                    <span>⭐</span>
+                </a>
+                <a href="cases.html" class="menu-btn secondary">
+                    <span>🎁</span> БАРАНОКЕЙСЫ
+                    <span>🎁</span>
+                </a>
+            </div>
+            <div class="menu-footer">
+                <p>✨ Собирай всех барашков и прокачивай их! ✨</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
