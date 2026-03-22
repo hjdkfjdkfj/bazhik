@@ -3,89 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Бажик - Веселый Мексиканский Барашек</title>
+    <title>Бажик - Коллекция барашков</title>
     <link rel="stylesheet" href="бажик.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Фоновые декорации -->
     <div class="bg-pattern"></div>
-    <div class="cactus-left">
-        <div class="cactus-flower"></div>
-    </div>
-    <div class="cactus-right">
-        <div class="cactus-flower"></div>
-    </div>
-    <div class="sun">
-        <div class="sun-rays"></div>
-    </div>
-    
-    <!-- Облака -->
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
-    <div class="cloud cloud4"></div>
-
-    <!-- Летающие мексиканские украшения -->
-    <div class="floating-decoration">
-        <span class="floating-emoji">🪇</span>
-        <span class="floating-emoji">🌮</span>
-        <span class="floating-emoji">🎩</span>
-        <span class="floating-emoji">🌵</span>
-        <span class="floating-emoji">🎶</span>
-    </div>
+    <div class="cactus-left"></div>
+    <div class="cactus-right"></div>
+    <div class="sun"></div>
 
     <div class="container">
         <header>
-            <div class="header-decoration">
-                <span class="maraca left">🪇</span>
-                <h1>🐏 БАЖИК 🐏</h1>
-                <span class="maraca right">🪇</span>
+            <h1>🐏 БАЖИК КОЛЛЕКЦИЯ 🐏</h1>
+            <div class="currency-display">
+                <img src="бажичок.png" alt="Бажичок" class="currency-icon">
+                <span id="currencyAmount" class="currency-amount">0</span>
             </div>
-            <p class="subtitle">✦ EL REY DE LOS CORDEROS ✦</p>
-            <div class="sombrero-icon">🎩🌵🎩</div>
         </header>
 
+        <!-- Главный Бажик для кликов -->
+        <div class="main-sheep-container">
+            <div id="clickableSheep" class="clickable-sheep">
+                <img id="mainSheepImage" src="бажичек.png" alt="Бажик" class="main-sheep-img">
+                <div class="click-effect"></div>
+            </div>
+            <p class="click-hint">👇 НАЖМИ НА БАЖИКА! 👇</p>
+            <div class="active-brawler-info" id="activeBrawlerInfo">
+                <span id="activeBrawlerName">Обычный Бажик</span>
+                <span id="activeBrawlerBonus">+1 за клик</span>
+            </div>
+        </div>
+
+        <!-- Статистика кликов -->
         <div class="stats-panel">
             <div class="stat-card">
-                <div class="stat-icon">🐏</div>
-                <div class="stat-info">
-                    <span class="stat-label">Армия Бажиков</span>
-                    <span id="sheepCount" class="stat-value">1</span>
-                </div>
+                <span class="stat-icon">⚡</span>
+                <span class="stat-label">ВСЕГО КЛИКОВ:</span>
+                <span id="totalClicks" class="stat-value">0</span>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">🎉</div>
-                <div class="stat-info">
-                    <span class="stat-label">Всего кликов</span>
-                    <span id="totalClicks" class="stat-value">0</span>
-                </div>
+            <div class="stat-card bonus-card">
+                <span class="stat-icon">💪</span>
+                <span class="stat-label">БОНУС ЗА КЛИК:</span>
+                <span id="clickBonus" class="stat-value">1</span>
             </div>
-            <button id="resetButton" class="reset-btn">
-                <span>🔄</span> Сбросить <span>🌵</span>
+        </div>
+
+        <!-- Кнопки навигации между окнами -->
+        <div class="nav-buttons">
+            <button id="openBrawlersBtn" class="nav-btn-main">
+                <span class="nav-icon">⭐</span>
+                МОИ БАРАНЧИКИ
+                <span class="nav-icon">⭐</span>
+            </button>
+            <button id="openCasesBtn" class="nav-btn-main">
+                <span class="nav-icon">🎁</span>
+                БАРАНОКЕЙСЫ
+                <span class="nav-icon">🎁</span>
             </button>
         </div>
 
-        <div id="sheepField" class="sheep-field">
-            <!-- Барашки будут здесь -->
+        <!-- Кнопка сброса -->
+        <div class="reset-section">
+            <button id="resetGameBtn" class="reset-btn">🔄 СБРОСИТЬ ПРОГРЕСС 🔄</button>
         </div>
 
-        <div class="sound-control">
-            <button id="muteButton" class="mute-btn">
-                <span class="mute-icon">🔊</span>
-                <span class="mute-text">Звуки</span>
-            </button>
-        </div>
-        
         <footer>
-            <div class="footer-decoration">
-                <span>🌮</span>
-                <p>✨ Нажми на барашка — стадо УДВАИВАЕТСЯ! ✨</p>
-                <span>🌮</span>
-            </div>
-            <p class="credit">💚 Бажик — самый веселый барашек в Мексике 🎶</p>
+            <p>✨ Открывай кейсы, собирай всех барашков и прокачивай их! ✨</p>
+            <p class="credit">💚 Каждый уровень увеличивает доход от клика!</p>
         </footer>
+    </div>
+
+    <!-- ПОЛНОЭКРАННОЕ ОКНО 1: МОИ БАРАНЧИКИ -->
+    <div id="brawlersWindow" class="fullscreen-window hidden">
+        <div class="fullscreen-content">
+            <div class="window-header-full">
+                <h2>⭐ МОИ БАРАНЧИКИ ⭐</h2>
+                <button class="close-window-btn" data-window="brawlersWindow">✖ ЗАКРЫТЬ ✖</button>
+            </div>
+            <div class="brawlers-fullscreen-grid" id="brawlersGrid">
+                <!-- Динамически добавляются барашки -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОЛНОЭКРАННОЕ ОКНО 2: БАРАНОКЕЙСЫ с анимацией как в CS:GO -->
+    <div id="casesWindow" class="fullscreen-window hidden">
+        <div class="fullscreen-content">
+            <div class="window-header-full">
+                <h2>🎁 БАРАНОКЕЙСЫ 🎁</h2>
+                <button class="close-window-btn" data-window="casesWindow">✖ ЗАКРЫТЬ ✖</button>
+            </div>
+            <div class="cases-fullscreen-container">
+                <div class="case-main-card">
+                    <div class="case-3d-preview">
+                        <img src="баранокейс.png" alt="Баранокейс" class="case-big-image">
+                        <div class="case-glow-ring"></div>
+                    </div>
+                    <div class="case-info-full">
+                        <h3>🔥 БАРАНОКЕЙС 🔥</h3>
+                        <p>Открой кейс и получи одного из барашков!</p>
+                        <div class="case-characters-preview">
+                            <div class="preview-item">🐏 Обычный</div>
+                            <div class="preview-item">👓 В очках</div>
+                            <div class="preview-item">🔧 Меха</div>
+                            <div class="preview-item">🎭 Поко</div>
+                        </div>
+                        <button id="openCaseFullBtn" class="case-open-full-btn">
+                            <span class="btn-text">🎲 ОТКРЫТЬ КЕЙС 🎲</span>
+                            <span class="btn-price-full">
+                                <img src="бажичок.png" class="btn-currency-icon">
+                                <span id="casePriceFull">10</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CS:GO СТИЛЬ - АНИМАЦИЯ ПРОКРУТКИ СКИНОВ -->
+    <div id="csgoRollAnimation" class="csgo-roll-overlay hidden">
+        <div class="roll-background"></div>
+        <div class="roll-container">
+            <div class="roll-header">
+                <span>🔫 ОТКРЫТИЕ КЕЙСА 🔫</span>
+                <div class="roll-progress-bar">
+                    <div class="roll-progress-fill" id="rollProgressFill"></div>
+                </div>
+            </div>
+            <div class="skin-roll-area" id="skinRollArea">
+                <div class="skin-roller" id="skinRoller">
+                    <!-- Сюда динамически добавляются скины для прокрутки -->
+                </div>
+                <div class="roll-indicator"></div>
+            </div>
+            <div class="roll-result hidden" id="rollResult">
+                <div class="result-card">
+                    <div class="result-glow"></div>
+                    <div class="result-image" id="resultImage"></div>
+                    <div class="result-name" id="resultName"></div>
+                    <div class="result-stats" id="resultStats"></div>
+                    <button class="result-claim-btn" id="resultClaimBtn">ЗАБРАТЬ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения сброса -->
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">⚠️</div>
+            <h3>СБРОС ПРОГРЕССА</h3>
+            <p>Вы уверены, что хотите сбросить весь прогресс?</p>
+            <p>Все барашки, уровни и монеты будут удалены!</p>
+            <div class="modal-buttons">
+                <button id="confirmResetBtn" class="confirm-btn">✅ ДА, СБРОСИТЬ</button>
+                <button id="cancelResetBtn" class="cancel-btn">❌ ОТМЕНА</button>
+            </div>
+        </div>
     </div>
 
     <script src="бажик.js"></script>
