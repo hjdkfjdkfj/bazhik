@@ -6,12 +6,19 @@
     <title>Бажик - Игра</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
     <style>
-        /* (стили остаются те же, что были ранее) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a2a2a 100%);
+            min-height: 100vh;
+        }
         .game-container {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0a0f1a 0%, #1a2a2a 100%);
             padding: 20px;
         }
         .game-content {
@@ -105,6 +112,12 @@
             font-size: 0.9rem;
             color: #6bb86b;
         }
+        .hero-rarity {
+            font-size: 0.7rem;
+            margin-top: 5px;
+        }
+        .hero-rarity.common { color: #6c757d; }
+        .hero-rarity.rare { color: #28a745; }
         .stats-row {
             display: flex;
             justify-content: center;
@@ -173,10 +186,6 @@
             color: rgba(255,255,255,0.3);
             font-size: 0.7rem;
         }
-        .case-price-info {
-            color: #ffaa66;
-            font-weight: bold;
-        }
         @media (max-width: 600px) {
             .hero-image { width: 200px; }
             .stat-number { font-size: 1.2rem; }
@@ -202,6 +211,7 @@
                 <div class="hero-info">
                     <div class="hero-name" id="activeBrawlerName">Обычный Бажик</div>
                     <div class="hero-bonus" id="activeBrawlerBonus">+1 за клик</div>
+                    <div class="hero-rarity" id="activeBrawlerRarity">☆ ОБЫЧНЫЙ ☆</div>
                 </div>
                 <div class="click-hint">👇 НАЖМИ НА БАЖИКА! 👇</div>
             </div>
@@ -232,8 +242,8 @@
 
             <div class="info-text">
                 <p>✨ Нажми на Бажика, чтобы получить Бажички! ✨</p>
-                <p>🎁 Кейс стоит <span class="case-price-info">150 Бажичков</span> и дает случайного барашка!</p>
-                <p>💪 Каждый уровень увеличивает доход от клика!</p>
+                <p>🎁 Кейсы: обычный (150💰, 1 дубль) | золотой (500💰, 2 дубля)</p>
+                <p>💚 Редкие барашки дают x2 монет за клик!</p>
             </div>
         </div>
     </div>

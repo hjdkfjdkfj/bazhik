@@ -12,18 +12,15 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0a1f1a 0%, #1a3a2a 100%);
             min-height: 100vh;
         }
-        
         .brawlers-page {
             padding: 20px;
             min-height: 100vh;
         }
-        
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -35,7 +32,6 @@
             padding: 12px 24px;
             border: 1px solid rgba(255,215,0,0.2);
         }
-        
         .back-btn {
             background: rgba(255,170,51,0.2);
             border: 1px solid #ffaa33;
@@ -45,24 +41,16 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            transition: all 0.2s;
         }
-        
-        .back-btn:active {
-            transform: scale(0.95);
-        }
-        
         .page-title {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
         .page-title h1 {
             font-size: 1.3rem;
             color: #ffd966;
         }
-        
         .currency-badge {
             display: flex;
             align-items: center;
@@ -71,19 +59,43 @@
             padding: 6px 16px;
             border-radius: 40px;
         }
-        
         .currency-badge img {
             width: 28px;
             height: 28px;
-            object-fit: contain;
         }
-        
         .currency-badge span {
             font-weight: 700;
             color: #ffd966;
             font-size: 1.2rem;
         }
-        
+        .rarity-info-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .rarity-common-badge {
+            color: #6c757d;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(108,117,125,0.2);
+            margin: 0 5px;
+            border: 1px solid #6c757d;
+        }
+        .rarity-rare-badge {
+            color: #28a745;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(40,167,69,0.2);
+            margin: 0 5px;
+            border: 1px solid #28a745;
+        }
         .brawlers-grid {
             display: flex;
             flex-wrap: wrap;
@@ -91,68 +103,72 @@
             gap: 25px;
             padding: 20px;
         }
-        
         .brawler-card {
             background: linear-gradient(135deg, rgba(40,50,60,0.9), rgba(30,40,50,0.7));
             border-radius: 28px;
             padding: 20px;
-            width: 260px;
+            width: 280px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            border: 2px solid rgba(255,215,0,0.2);
             backdrop-filter: blur(10px);
+            position: relative;
         }
-        
+        .brawler-card.common {
+            border: 3px solid #6c757d;
+            box-shadow: 0 0 10px rgba(108,117,125,0.2);
+        }
+        .brawler-card.rare {
+            border: 3px solid #28a745;
+            box-shadow: 0 0 15px rgba(40,167,69,0.3);
+        }
         .brawler-card.selected {
-            border-color: #ffd966;
-            box-shadow: 0 0 20px rgba(255,215,0,0.3);
             transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255,215,0,0.5);
+            border-color: #ffd966 !important;
         }
-        
         .brawler-card.locked {
             opacity: 0.7;
             cursor: default;
         }
-        
         .brawler-img {
             width: 110px;
             height: 110px;
             object-fit: contain;
             margin-bottom: 12px;
         }
-        
         .brawler-name {
             font-weight: 700;
-            color: #ffd966;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-bottom: 5px;
         }
-        
+        .common .brawler-name { color: #adb5bd; }
+        .rare .brawler-name { color: #28a745; }
+        .rarity-text {
+            font-size: 0.7rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .common .rarity-text { color: #6c757d; }
+        .rare .rarity-text { color: #28a745; }
         .brawler-level {
             font-size: 0.75rem;
             color: rgba(255,255,255,0.6);
             margin: 8px 0;
         }
-        
-        .max-level-text {
-            color: #ffaa33;
-            font-weight: 700;
-        }
-        
+        .max-level-text { color: #ffaa33; font-weight: 700; }
         .brawler-bonus {
             font-size: 0.7rem;
             color: #6bb86b;
             font-weight: 600;
             margin: 5px 0;
         }
-        
         .progress-container {
             margin: 15px 0;
             padding: 10px;
             background: rgba(0,0,0,0.3);
             border-radius: 20px;
         }
-        
         .progress-label {
             display: flex;
             justify-content: space-between;
@@ -160,7 +176,6 @@
             color: #ffaa66;
             margin-bottom: 6px;
         }
-        
         .progress-bar-bg {
             background: rgba(255,255,255,0.2);
             border-radius: 10px;
@@ -168,21 +183,18 @@
             overflow: hidden;
             margin-bottom: 12px;
         }
-        
         .progress-bar-fill {
             background: linear-gradient(90deg, #ffaa33, #ffd966);
             height: 100%;
             border-radius: 10px;
             transition: width 0.3s ease;
         }
-        
         .upgrade-cost-info {
             background: rgba(0,0,0,0.3);
             border-radius: 12px;
             padding: 8px;
             margin-bottom: 12px;
         }
-        
         .cost-item {
             display: flex;
             justify-content: space-between;
@@ -190,12 +202,7 @@
             color: rgba(255,255,255,0.7);
             padding: 3px 0;
         }
-        
-        .cost-value {
-            color: #ffaa66;
-            font-weight: bold;
-        }
-        
+        .cost-value { color: #ffaa66; font-weight: bold; }
         .upgrade-btn {
             background: linear-gradient(135deg, #ffaa33, #ff8800);
             border: none;
@@ -207,13 +214,7 @@
             cursor: pointer;
             width: 100%;
             font-family: inherit;
-            transition: transform 0.1s;
         }
-        
-        .upgrade-btn:active {
-            transform: scale(0.96);
-        }
-        
         .brawler-max-achieved {
             margin-top: 10px;
             padding: 8px;
@@ -222,7 +223,6 @@
             font-size: 0.7rem;
             color: #ffaa33;
         }
-        
         .final-bonus {
             margin-top: 10px;
             padding: 8px;
@@ -230,9 +230,7 @@
             border-radius: 20px;
             font-size: 0.8rem;
             color: #ffaa33;
-            text-align: center;
         }
-        
         .max-level-badge {
             position: absolute;
             top: -10px;
@@ -245,18 +243,15 @@
             color: #1a1a2e;
             animation: pulse 1s infinite;
         }
-        
         .brawler-image-wrapper {
             position: relative;
             margin-bottom: 12px;
             display: inline-block;
         }
-        
         .locked-img {
             filter: grayscale(0.7) blur(3px);
             opacity: 0.5;
         }
-        
         .lock-overlay {
             position: absolute;
             top: 50%;
@@ -265,38 +260,24 @@
             font-size: 2rem;
             pointer-events: none;
         }
-        
         .unlock-hint {
             margin-top: 8px;
             font-size: 0.65rem;
             color: #ffaa66;
-            text-align: center;
         }
-        
         .info-message {
             text-align: center;
             padding: 20px;
             color: rgba(255,255,255,0.5);
             font-size: 0.8rem;
         }
-        
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
         }
-        
         @media (max-width: 600px) {
-            .brawler-card {
-                width: 200px;
-                padding: 15px;
-            }
-            .brawler-img {
-                width: 80px;
-                height: 80px;
-            }
-            .page-title h1 {
-                font-size: 1rem;
-            }
+            .brawler-card { width: 220px; padding: 15px; }
+            .brawler-img { width: 80px; height: 80px; }
         }
     </style>
 </head>
@@ -310,22 +291,27 @@
                 <span>⭐</span>
             </div>
             <div class="currency-badge">
-                <img src="images/бажичок.png" alt="💰" onerror="this.style.display='none'">
+                <img src="images/бажичок.png" alt="💰">
                 <span id="currencyDisplay">0</span>
             </div>
         </div>
 
+        <div class="rarity-info-header">
+            <span class="rarity-common-badge">⚪ ОБЫЧНЫЕ</span>
+            <span>→ серая рамка, стандартный бонус</span>
+            <br>
+            <span class="rarity-rare-badge">🟢 РЕДКИЕ</span>
+            <span>→ зеленая рамка, х2 монет за клик!</span>
+        </div>
+
         <div class="brawlers-grid" id="brawlersGrid">
-            <!-- Здесь будут отображаться барашки -->
-            <div style="text-align: center; width: 100%; padding: 50px; color: rgba(255,255,255,0.5);">
-                Загрузка...
-            </div>
+            <div style="text-align: center; width: 100%; padding: 50px;">Загрузка...</div>
         </div>
         
         <div class="info-message">
             <p>✨ Нажми на баранчика, чтобы выбрать его ✨</p>
-            <p>🔒 Заблокированных баранчиков можно получить из кейсов за 150💰</p>
-            <p>💪 Каждый уровень улучшения увеличивает доход от клика!</p>
+            <p>🔒 Заблокированных баранчиков можно получить из кейсов!</p>
+            <p>💚 Редкие баранчики дают ВДВОЕ больше монет за клик!</p>
         </div>
     </div>
 
